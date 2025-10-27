@@ -1,0 +1,9 @@
+/logs
+*.log
+.vscode/
+node_modules/
+.env
+.production.env
+.development.env
+/dist
+coverage/*

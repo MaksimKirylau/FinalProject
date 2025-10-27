@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: nest_mysql
+    restart: always
+    env_file:
+      - ./config/env/.development.env
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: nest_app
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - ./config/env/.development.env
+    command: npm run start:dev
+    volumes:
+      - .:/app
+
+volumes:
+  mysql_data:

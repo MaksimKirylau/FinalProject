@@ -1,0 +1,1 @@
+export const PURCHASE_API_MAPPERS = Symbol('PURCHASE_API_MAPPERS');
