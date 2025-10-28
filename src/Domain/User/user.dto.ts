@@ -1,8 +1,8 @@
-import { Optional } from '../../Utility/global.types';
+import { Optional, Role } from '../../Utility/global.types';
 
 export class UserDto {
     userId: number;
-    role: 'admin' | 'customer';
+    role: Role;
     isOAuthUser: boolean;
     firstName: string;
     lastName: string;
@@ -17,7 +17,7 @@ export class UserDto {
 
 export class UserWithPurchasesDto {
     userId: number;
-    role: 'admin' | 'customer';
+    role: Role;
     isOAuthUser: boolean;
     firstName: string;
     lastName: string;

@@ -2,15 +2,15 @@ import {
     CreateReviewDto,
     ReviewPresentationDto,
     ReviewsPresentationsDto,
-} from '../../..//API/Review/review.api.dto';
-import { ReviewEntity } from '../../..//Domain/Review/repository/review.model';
+} from '../../../API/Review/review.api.dto';
+import { ReviewEntity } from '../../../Domain/Review/repository/review.model';
 import {
     ReviewDto,
     ReviewsDto,
     ReviewsEntitiesDto,
-} from '../../..//Domain/Review/review.dto';
-import { PaginationDto } from '../../..//Utility/global.types';
-import { DiscogsScoreDto } from '../../..//Utility/services/Discogs/discogs.dto';
+} from '../../../Domain/Review/review.dto';
+import { PaginationDto } from '../../../Utility/global.types';
+import { DiscogsScoreDto } from '../../../Utility/services/Discogs/discogs.dto';
 
 export const mockReviewPagination: PaginationDto = {
     page: 1,

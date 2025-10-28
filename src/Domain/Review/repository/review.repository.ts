@@ -52,6 +52,7 @@ export class ReviewRepository implements IReviewRepository {
         filter: Partial<ReviewDto>,
         pagination: PaginationDto
     ): Promise<ReviewsDto> {
+        // eslint-disable-next-line prefer-const
         let { page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = pagination;
 
         if (limit > DEFAULT_LIMIT) {

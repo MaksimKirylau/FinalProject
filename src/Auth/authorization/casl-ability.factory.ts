@@ -9,6 +9,7 @@ import {
 import { UserDto } from '../../Domain/User/user.dto';
 import { RecordDto } from '../../Domain/Record/record.dto';
 import { ReviewDto } from '../../Domain/Review/review.dto';
+import { DiscogsScoreDto } from '../../Utility/services/Discogs/discogs.dto';
 
 export enum Action {
     Manage = 'manage',
@@ -19,7 +20,12 @@ export enum Action {
 }
 
 type Subjects =
-    | InferSubjects<typeof UserDto | typeof RecordDto | typeof ReviewDto>
+    | InferSubjects<
+          | typeof UserDto
+          | typeof RecordDto
+          | typeof ReviewDto
+          | typeof DiscogsScoreDto
+      >
     | 'all';
 export type AppAbility = MongoAbility<[Action, Subjects]>;
 
@@ -45,6 +51,8 @@ export class CaslAbilityFactory {
             can(Action.Read, ReviewDto);
             can(Action.Create, ReviewDto);
             cannot(Action.Delete, ReviewDto);
+
+            can(Action.Read, DiscogsScoreDto);
         }
 
         return build({

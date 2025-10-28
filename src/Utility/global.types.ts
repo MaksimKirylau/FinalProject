@@ -3,6 +3,8 @@ import { Transform } from 'class-transformer';
 
 export type Optional<T> = T | null;
 
+export type Role = 'admin' | 'customer';
+
 export class PaginationDto {
     @ApiProperty({ example: '1', description: 'Page number' })
     @Transform(({ value }) => parseInt(value))

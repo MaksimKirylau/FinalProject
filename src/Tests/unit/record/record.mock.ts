@@ -8,17 +8,27 @@ import {
     RecordsPresentationsDto,
     RecordSortDto,
     UpdateRecordDto,
-} from '../../..//API/Record/record.api.dto';
+} from '../../../API/Record/record.api.dto';
 import {
     RecordDto,
     RecordListDto,
     RecordsDto,
     RecordsEntitiesDto,
     RecordsListDto,
-} from '../../..//Domain/Record/record.dto';
-import { RecordEntity } from '../../..//Domain/Record/repository/record.repository.model';
-import { PaginationDto } from '../../..//Utility/global.types';
-import { DiscogsReleaseDto } from '../../..//Utility/services/Discogs/discogs.dto';
+} from '../../../Domain/Record/record.dto';
+import { RecordEntity } from '../../../Domain/Record/repository/record.repository.model';
+import { PaginationDto } from '../../../Utility/global.types';
+import { DiscogsReleaseDto } from '../../../Utility/services/Discogs/discogs.dto';
+
+export const mockTelegramMessage: string = `
+            *Record 1*
+            Author 1
+            100 $
+
+            Description 1
+
+            [Link to store](http://mock.com/database/1)
+        `;
 
 export const mockRecordPagination: PaginationDto = {
     page: 1,

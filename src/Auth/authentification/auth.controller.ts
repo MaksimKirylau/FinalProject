@@ -80,7 +80,6 @@ export class AuthController {
         @RequestUser() requestUser: RequestUserDto,
         @Body() dto: RefreshTokenDto
     ): Promise<TokenDto> {
-        console.log(dto);
         return this.authService.refreshTokens(
             requestUser.userId,
             dto.refreshToken

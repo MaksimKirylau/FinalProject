@@ -1,6 +1,6 @@
 import { CreateUserDto, UpdateUserDto } from '../../API/User/user.api.dto';
 import { UserDto, UserWithPurchasesDto } from './user.dto';
-import { Optional } from '../../Utility/global.types';
+import { Optional, Role } from '../../Utility/global.types';
 import { UserEntity } from './repository/user.repository.model';
 import { CreateOAuthUserDto } from '../../Auth/authentification/oauth/oauth.dto';
 
@@ -40,7 +40,7 @@ export interface IUserMappers {
 
 export type UserSearch = {
     userId: number;
-    role: 'admin' | 'customer';
+    role: Role;
     isOAuthUser: boolean;
     firstName: string;
     lastName: string;

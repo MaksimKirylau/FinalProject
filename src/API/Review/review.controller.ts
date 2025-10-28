@@ -71,6 +71,7 @@ export class ReviewController implements IReviewController {
         description: 'Returns average score and reviewers count',
         type: DiscogsScoreDto,
     })
+    @CheckAbilities({ action: Action.Read, subject: DiscogsScoreDto })
     @Get('/discogs/score/:id')
     public async getDiscogsScore(
         @Param('id', ParseIntPipe) recordId: number

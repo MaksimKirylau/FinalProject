@@ -17,16 +17,22 @@ import {
 import { DISCOGS_SERVICE } from '../../Utility/services/Discogs/discogs.constants';
 import type { IDiscogsService } from '../../Utility/services/Discogs/discogs.interfaces';
 import { DiscogsReleaseDto } from '../../Utility/services/Discogs/discogs.dto';
+import { TELEGRAM_SERVICE } from '../../Utility/services/Telegram/telegram.constants';
+import type { ITelegramService } from '../../Utility/services/Telegram/telegram.interfaces';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class RecordService implements IRecordService {
     private readonly logger = new Logger(RecordService.name);
 
     constructor(
+        private readonly configService: ConfigService,
         @Inject(RECORD_REPOSITORY)
         private readonly recordRepository: IRecordRepository,
         @Inject(DISCOGS_SERVICE)
-        private readonly discogsService: IDiscogsService
+        private readonly discogsService: IDiscogsService,
+        @Inject(TELEGRAM_SERVICE)
+        private readonly telegramService: ITelegramService
     ) {}
 
     public async getRecord(recordId: number): Promise<RecordDto> {
@@ -38,6 +44,20 @@ export class RecordService implements IRecordService {
         }
 
         return record;
+    }
+
+    public async publishRecord(record: RecordDto): Promise<void> {
+        const text: string = `
+            *${record.name}*
+            ${record.authorName}
+            ${record.price} $
+
+            ${record.description}
+
+            [Link to store](${this.configService.get<string>('BASE_URL')}/database/${record.recordId})
+        `;
+
+        await this.telegramService.sendMessage(text);
     }
 
     public async getRecords(

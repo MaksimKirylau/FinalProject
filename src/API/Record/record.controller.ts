@@ -50,6 +50,24 @@ export class RecordController implements IRecordController {
         private readonly recordApiMapper: IRecordApiMapper
     ) {}
 
+    @ApiOperation({ summary: 'Search record by id in databse' })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Returns found record',
+        type: RecordPresentationDto,
+    })
+    @CheckAbilities({ action: Action.Read, subject: RecordDto })
+    @Get('/database/:id')
+    public async getRecord(
+        @Param('id', ParseIntPipe) recordId: number
+    ): Promise<RecordPresentationDto> {
+        const record: RecordDto = await this.recordService.getRecord(recordId);
+
+        const recordPresentation: RecordPresentationDto =
+            this.recordApiMapper.recordToPresentation(record);
+        return recordPresentation;
+    }
+
     @ApiOperation({ summary: 'Search for specific records' })
     @ApiResponse({
         status: HttpStatus.OK,
@@ -73,7 +91,24 @@ export class RecordController implements IRecordController {
         return recordsPresentation;
     }
 
-    @ApiOperation({ summary: 'Records list with for unauthentificated users' })
+    @ApiOperation({
+        summary: 'Search specific record and publish it to telegram',
+    })
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: 'Returns found record',
+        type: RecordPresentationDto,
+    })
+    @CheckAbilities({ action: Action.Manage, subject: RecordDto })
+    @Get('/telegram/:id')
+    public async publishToTelegram(
+        @Param('id', ParseIntPipe) recordId: number
+    ): Promise<void> {
+        const record: RecordDto = await this.recordService.getRecord(recordId);
+        await this.recordService.publishRecord(record);
+    }
+
+    @ApiOperation({ summary: 'Records list for unauthentificated users' })
     @ApiResponse({
         status: HttpStatus.OK,
         description: 'Returns records list with first review and average score',

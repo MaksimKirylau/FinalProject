@@ -22,6 +22,8 @@ export interface IRecordController {
     createDiscogsRecord(
         dto: CreateDiscogsRecordDto
     ): Promise<RecordPresentationDto>;
+    getRecord(recordId: number): Promise<RecordPresentationDto>;
+    publishToTelegram(recordId: number): Promise<void>;
     getRecords(
         paginationOptions: PaginationDto,
         sort: RecordSortDto,

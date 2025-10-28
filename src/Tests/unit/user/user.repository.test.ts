@@ -1,7 +1,6 @@
 import { describe, it, beforeEach, mock } from 'node:test';
 import assert from 'node:assert';
 import { UserRepository } from '../../../Domain/User/repository/user.repository';
-import { Sequelize } from 'sequelize-typescript';
 import {
     mockUser,
     mockUserEntity,

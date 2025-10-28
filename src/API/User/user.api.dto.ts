@@ -8,7 +8,7 @@ import {
     MinLength,
 } from 'class-validator';
 import { PASSWORD_MIN_LENGTH } from '../../Auth/authentification/auth.constants';
-import type { Optional } from '../../Utility/global.types';
+import type { Optional, Role } from '../../Utility/global.types';
 
 export class CreateUserDto {
     @ApiProperty({ example: 'Ivan', description: 'Users first name' })
@@ -71,7 +71,7 @@ export class UserPresentationDto {
     @ApiProperty({ example: '1', description: 'Users id in database' })
     userId: number;
     @ApiProperty({ example: 'customer', description: 'Users role' })
-    role: 'admin' | 'customer';
+    role: Role;
     @ApiProperty({ example: 'Ivan', description: 'Users first name' })
     firstName: string;
     @ApiProperty({ example: 'Ivanov', description: 'Users last name' })
@@ -93,7 +93,7 @@ export class UserWithPurchsesPresentationDto {
     @ApiProperty({ example: '1', description: 'Users id in database' })
     userId: number;
     @ApiProperty({ example: 'customer', description: 'Users role' })
-    role: 'admin' | 'customer';
+    role: Role;
     @ApiProperty({ example: 'Ivan', description: 'Users first name' })
     firstName: string;
     @ApiProperty({ example: 'Ivanov', description: 'Users last name' })

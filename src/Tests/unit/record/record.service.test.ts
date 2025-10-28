@@ -15,6 +15,7 @@ import {
     mockDiscogsRelease,
     mockCreateDiscogsRecord,
     MOCK_DISCOGS_ID,
+    mockTelegramMessage,
 } from './record.mock';
 import {
     ResourceNotFoundException,
@@ -24,11 +25,22 @@ import { RecordService } from '../../../Domain/Record/record.service';
 
 describe('RecordService', () => {
     let recordService: RecordService;
+    let mockConfigService;
     let mockRecordRepository;
     let mockDiscogsService;
+    let telegramService;
 
     beforeEach(() => {
         mock.reset();
+
+        mockConfigService = {
+            get: mock.fn((key: string) => {
+                const config = {
+                    BASE_URL: 'http://mock.com',
+                };
+                return config[key];
+            }),
+        };
 
         mockRecordRepository = {
             findRecord: mock.fn(),
@@ -44,9 +56,15 @@ describe('RecordService', () => {
             getReleaseScore: mock.fn(),
         };
 
+        telegramService = {
+            sendMessage: mock.fn(),
+        };
+
         recordService = new RecordService(
+            mockConfigService,
             mockRecordRepository,
-            mockDiscogsService
+            mockDiscogsService,
+            telegramService
         );
     });
 
@@ -78,6 +96,17 @@ describe('RecordService', () => {
                     );
                     return true;
                 }
+            );
+        });
+    });
+
+    describe('publishRecord', () => {
+        it('should get record and post about it', async () => {
+            await recordService.publishRecord(mockRecord);
+
+            assert.deepEqual(
+                telegramService.sendMessage.mock.calls[0].arguments,
+                [mockTelegramMessage]
             );
         });
     });

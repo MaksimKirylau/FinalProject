@@ -2,7 +2,7 @@ import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { OAuthAccountEntity } from '../../../Domain/OAuthAccount/repository/oauthAccount.repository.model';
 import { PurchaseEntity } from '../../../Domain/Purchase/repository/purchase.repository.model';
 import { ReviewEntity } from '../../../Domain/Review/repository/review.model';
-import type { Optional } from '../../../Utility/global.types';
+import type { Optional, Role } from '../../../Utility/global.types';
 
 interface UserCreationAttributes {
     email: string;
@@ -55,7 +55,7 @@ export class UserEntity extends Model<UserEntity, UserCreationAttributes> {
         allowNull: false,
         defaultValue: 'customer',
     })
-    role: 'admin' | 'customer';
+    role: Role;
 
     @HasMany(() => ReviewEntity)
     reviews: ReviewEntity[];

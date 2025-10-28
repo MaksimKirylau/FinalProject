@@ -70,6 +70,7 @@ export class RecordRepository implements IRecordRepository {
         sort: RecordSortDto,
         filter: RecordFilterDto
     ): Promise<RecordsDto> {
+        // eslint-disable-next-line prefer-const
         let { page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = pagination;
 
         const { sortBy = DEFAULT_SORT_BY, sortOrder = DEFAULT_SORT_ORDER } =
@@ -107,6 +108,7 @@ export class RecordRepository implements IRecordRepository {
     public async findRecordsList(
         pagination: PaginationDto
     ): Promise<RecordsListDto> {
+        // eslint-disable-next-line prefer-const
         let { page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = pagination;
 
         if (limit > DEFAULT_LIMIT) {

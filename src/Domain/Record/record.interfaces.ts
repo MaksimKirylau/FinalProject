@@ -16,6 +16,7 @@ import { Optional, PaginationDto } from '../../Utility/global.types';
 
 export interface IRecordService {
     getRecord(recordId: number): Promise<RecordDto>;
+    publishRecord(record: RecordDto): Promise<void>;
     getRecords(
         pagination: PaginationDto,
         sort: RecordSortDto,

@@ -1,4 +1,4 @@
-import { CreateOAuthUserDto } from '../../..//Auth/authentification/oauth/oauth.dto';
+import { CreateOAuthUserDto } from '../../../Auth/authentification/oauth/oauth.dto';
 import {
     CreateUserDto,
     UpdateUserDto,
@@ -6,7 +6,7 @@ import {
     UserWithPurchsesPresentationDto,
 } from '../../../API/User/user.api.dto';
 import { UserDto, UserWithPurchasesDto } from '../../../Domain/User/user.dto';
-import { UserEntity } from '../../..//Domain/User/repository/user.repository.model';
+import { UserEntity } from '../../../Domain/User/repository/user.repository.model';
 import { RequestUserDto } from '../../../Auth/authentification/auth.dto';
 
 export const MOCK_USER_ID: number = 1;

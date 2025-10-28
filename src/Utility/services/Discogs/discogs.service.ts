@@ -31,10 +31,7 @@ export class DiscogsService implements IDiscogsService {
         };
     }
 
-    private async fetchJson<T>(
-        url: string,
-        params?: Record<string, any>
-    ): Promise<T> {
+    private async fetchJson<T>(url: string, params?): Promise<T> {
         try {
             const query = params
                 ? '?' +

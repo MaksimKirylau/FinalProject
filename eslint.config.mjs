@@ -3,7 +3,7 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-    globalIgnores(['**/*mock.*']),
+    globalIgnores(['**/*mock.*', '**/*filter.*']),
     eslint.configs.recommended,
     ...tseslint.configs.recommended,
     { ignores: ['dist/*', '*.js'] },

@@ -12,6 +12,7 @@ import { RecordMappers } from './record.mappers';
 import { RecordRepository } from './repository/records.repository';
 import { ReviewEntity } from '../Review/repository/review.model';
 import { DiscogsModule } from '../../Utility/services/Discogs/discogs.module';
+import { TelegramModule } from '../../Utility/services/Telegram/telegram.module';
 
 @Module({
     providers: [
@@ -23,6 +24,7 @@ import { DiscogsModule } from '../../Utility/services/Discogs/discogs.module';
         DatabaseModule,
         SequelizeModule.forFeature([RecordEntity, ReviewEntity]),
         DiscogsModule,
+        TelegramModule,
     ],
     exports: [RECORD_SERVICE],
 })

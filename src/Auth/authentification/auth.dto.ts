@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 import { PASSWORD_MIN_LENGTH } from './auth.constants';
 import { ApiProperty } from '@nestjs/swagger';
+import { Role } from '../../Utility/global.types';
 
 export class LoginDto {
     @IsDefined()
@@ -40,11 +41,11 @@ export class RefreshTokenDto {
 export class JwtPayload {
     userId: number;
     email: string;
-    role: 'admin' | 'customer';
+    role: Role;
 }
 
 export class RequestUserDto {
     userId: number;
     email: string;
-    role: 'admin' | 'customer';
+    role: Role;
 }

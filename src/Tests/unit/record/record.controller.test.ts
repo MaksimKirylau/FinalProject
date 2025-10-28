@@ -97,6 +97,29 @@ describe('RecordController', () => {
         });
     });
 
+    describe('publishToTelegram', () => {
+        it('should find record and post about it', async () => {
+            mockRecordService.getRecord.mock.mockImplementation(() =>
+                Promise.resolve(mockRecord)
+            );
+            mockRecordApiMapper.recordToPresentation.mock.mockImplementation(
+                () => mockRecordPresentation
+            );
+
+            await recordController.getRecord(MOCK_RECORD_ID);
+
+            assert.deepEqual(
+                mockRecordService.getRecord.mock.calls[0].arguments,
+                [MOCK_RECORD_ID]
+            );
+            assert.deepEqual(
+                mockRecordApiMapper.recordToPresentation.mock.calls[0]
+                    .arguments,
+                [mockRecord]
+            );
+        });
+    });
+
     describe('getRecordsList', () => {
         it('should return mapped records list with pagination', async () => {
             mockRecordService.getRecordsList.mock.mockImplementation(() =>

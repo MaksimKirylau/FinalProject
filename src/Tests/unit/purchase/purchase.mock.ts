@@ -2,8 +2,8 @@ import {
     CreatePurchaseDto,
     PurchasePresentationDto,
 } from '../../../API/Purchase/purchase.api.dto';
-import { PurchaseDto } from '../../..//Domain/Purchase/purchase.dto';
-import { PurchaseEntity } from '../../..//Domain/Purchase/repository/purchase.repository.model';
+import { PurchaseDto } from '../../../Domain/Purchase/purchase.dto';
+import { PurchaseEntity } from '../../../Domain/Purchase/repository/purchase.repository.model';
 
 export const MOCK_SESSION_ID: string = 'sessionId';
 export const MOCK_PURCHASE_ID: number = 1;
