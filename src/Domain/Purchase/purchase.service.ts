@@ -59,7 +59,7 @@ export class PurchaseService implements IPurchaseService {
                     price_data: {
                         currency: 'usd',
                         product_data: { name: record.name },
-                        unit_amount: record.price * CENT_MULTIPLIER,
+                        unit_amount: Math.round(record.price * CENT_MULTIPLIER),
                     },
                     quantity: 1,
                 },
